@@ -1,5 +1,7 @@
 const topBar = document.querySelector("#top-bar");
 const exteriorColorSection = document.querySelector("#exterior-buttons");
+const interiorColorSection = document.querySelector("#interior-buttons");
+const interiorImage = document.querySelector("#interior-image");
 const exteriorImage = document.querySelector("#exterior-image");
 let selectedColor = "Stealth Grey";
 
@@ -61,6 +63,11 @@ function handleColorButtonClick(e) {
       selectedColor = button.querySelector("img").alt;
       updateExteriorImage();
     }
+    // Change interior image
+    if (e.currentTarget === interiorColorSection) {
+      const color = button.querySelector("img").alt;
+      interiorImage.src = interiorImages[color];
+    }
   }
 }
 
@@ -68,3 +75,4 @@ function handleColorButtonClick(e) {
 
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 exteriorColorSection.addEventListener("click", handleColorButtonClick);
+interiorColorSection.addEventListener("click", handleColorButtonClick);
