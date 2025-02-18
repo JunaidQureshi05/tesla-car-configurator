@@ -3,6 +3,7 @@ const exteriorColorSection = document.querySelector("#exterior-buttons");
 const interiorColorSection = document.querySelector("#interior-buttons");
 const interiorImage = document.querySelector("#interior-image");
 const exteriorImage = document.querySelector("#exterior-image");
+const wheelButtonsSection = document.querySelector("#wheel-buttons");
 let selectedColor = "Stealth Grey";
 
 const selectedOptions = {
@@ -71,8 +72,21 @@ function handleColorButtonClick(e) {
   }
 }
 
+function handleWheelButtonClick(e) {
+  console.log("%%%%%%", e.target.tagName);
+  if (e.target.tagName === "BUTTON") {
+    const buttons = document.querySelectorAll("#wheel-buttons button");
+    buttons.forEach((btn) => btn.classList.remove("bg-gray-700", "text-white"));
+    e.target.classList.add("bg-gray-700", "text-white");
+    selectedOptions["Performance Wheels"] =
+      e.target.textContent.includes("Performance");
+    updateExteriorImage();
+  }
+}
+
 // Event listeners
 
 window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 exteriorColorSection.addEventListener("click", handleColorButtonClick);
 interiorColorSection.addEventListener("click", handleColorButtonClick);
+wheelButtonsSection.addEventListener("click", handleWheelButtonClick);
