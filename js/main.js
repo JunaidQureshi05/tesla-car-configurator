@@ -98,7 +98,10 @@ function handleColorButtonClick(e) {
 function handleWheelButtonClick(e) {
   if (e.target.tagName === "BUTTON") {
     const buttons = document.querySelectorAll("#wheel-buttons button");
-    buttons.forEach((btn) => btn.classList.remove("bg-gray-700", "text-white"));
+    buttons.forEach((btn) => {
+      btn.classList.remove("bg-gray-700", "text-white");
+      btn.classList.add("bg-gray-200");
+    });
     e.target.classList.add("bg-gray-700", "text-white");
     selectedOptions["Performance Wheels"] =
       e.target.textContent.includes("Performance");
