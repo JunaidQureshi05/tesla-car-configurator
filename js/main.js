@@ -68,14 +68,12 @@ function updateExteriorImage() {
 }
 
 function handleColorButtonClick(e) {
-  console.log("e.target.tagName", e.target.tagName);
   let button;
   if ((e.target.tagName = "IMG")) {
     button = e.target.closest("button");
   } else {
     button = e.target;
   }
-  console.log("button", button);
   if (button) {
     const buttons = e.currentTarget.querySelectorAll("button");
     buttons.forEach((btn) => btn.classList.remove("btn-selected"));
@@ -96,7 +94,6 @@ function handleColorButtonClick(e) {
 
 function handleWheelButtonClick(e) {
   if (e.target.tagName === "BUTTON") {
-    debugger;
     const buttons = document.querySelectorAll("#wheel-buttons button");
     buttons.forEach((btn) => btn.classList.remove("bg-gray-700", "text-white"));
     e.target.classList.add("bg-gray-700", "text-white");
@@ -108,10 +105,8 @@ function handleWheelButtonClick(e) {
 }
 
 function updateTotalPrice() {
-  debugger;
   currentPrice = basePrice;
   // Performance Wheel Option
-  console.log("!!!!!!!!", selectedOptions);
 
   if (selectedOptions["Performance Wheels"]) {
     currentPrice += pricing["Performance Wheels"];
@@ -141,15 +136,14 @@ function updateTotalPrice() {
       currentPrice += accessoryPrice;
     }
   });
-  console.log("$$$$$$$$", currentPrice);
+
   // Update the total price in UI
   totalPriceElement.textContent = `$${currentPrice.toLocaleString()}`;
 }
 
 const fullSelfDrivingChange = () => {
-  console.log("inside fullSelfDrivingCHange");
   selectedOptions["Full Self-Driving"] = fullSelfDrivingCheckbox.checked;
-  debugger;
+
   updateTotalPrice();
 };
 
@@ -169,3 +163,9 @@ interiorColorSection.addEventListener("click", handleColorButtonClick);
 wheelButtonsSection.addEventListener("click", handleWheelButtonClick);
 performanceBtn.addEventListener("click", handlePerformanceButtonClick);
 fullSelfDrivingCheckbox.addEventListener("change", fullSelfDrivingChange);
+
+Array.from(accessoryCheckboxes).map((item) => {
+  item.addEventListener("change", updateTotalPrice);
+});
+
+a;
